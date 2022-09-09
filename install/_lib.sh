@@ -35,6 +35,16 @@ else
   _endgroup=""
 fi
 
+# Turn truth-y looking things into 1, false-y looking things into 0
+# and empty string into empty string
+function parse_yes_no {
+  case "$1" in
+    yes|Yes|y|Y|1) echo 1;;
+    no|No|n|N|0) echo 0;;
+    *) echo;;
+  esac
+}
+
 # A couple of the config files are referenced from other subscripts, so they
 # get vars, while multiple subscripts call ensure_file_from_example.
 function ensure_file_from_example {
